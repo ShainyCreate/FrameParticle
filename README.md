@@ -12,7 +12,7 @@
 ```
 import { FrameParticle } from "./FrameParticle.js";
 
-world.events.itemUse.subscribe(event => {
+world.afterEvents.itemUse.subscribe(event => {
   let entity = event.source;
   //アイテムを使用したとき、その座標に1×1のパーティクルを生成する
   new FrameParticle(entity.dimension, entity.location, entity.location).show();
@@ -29,18 +29,18 @@ world.events.itemUse.subscribe(event => {
 Type: Dimension  
 
 ### location1  
-```location1: Location;```  
+```location1: Vector3;```  
 このパーティクルの一つ目の座標を返す  
-Type: Location  
+Type: Vector3  
 
 ### location2  
-```location2: Location;```  
+```location2: Vector3;```  
 このパーティクルの二つ目の座標を返す  
-Type: Location  
+Type: Vector3  
 
 ## Methods
 ### コンストラクタ  
-```new FrameParticle(dimension: Dimension, location1: Location, location2: Location)```  
+```new FrameParticle(dimension: Dimension, location1: Vector3, location2: Vector3)```  
 新しくFrameParticleオブジェクトを作る  
 Returns FrameParticle  
 

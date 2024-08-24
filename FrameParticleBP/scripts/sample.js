@@ -6,7 +6,8 @@
 import {
   world,
   Player,
-} from "mojang-minecraft";
+  system,
+} from "@minecraft/server";
 
 import { FrameParticle } from "./FrameParticle.js";
 
@@ -25,13 +26,13 @@ class MyFrameParticle extends FrameParticle {
 
 
 let frame_particles = [];
-world.events.itemUse.subscribe(event => {
+world.afterEvents.itemUse.subscribe(event => {
   let entity = event.source;
 
   if(!(entity instanceof Player)){
     return;
   }
-  if(event.item.id != "minecraft:stick"){
+  if (event.itemStack.typeId != "minecraft:stick") {
     return;
   }
 
@@ -51,7 +52,7 @@ world.events.itemUse.subscribe(event => {
 });
 
 
-world.events.tick.subscribe(() => {
+system.runInterval(() => {
   if(frame_particles.length > 0){
     let last_particle = frame_particles[frame_particles.length-1];
     if(!last_particle.confirm){
